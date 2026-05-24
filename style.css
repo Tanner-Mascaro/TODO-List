@@ -1,0 +1,55 @@
+
+
+.header {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+#task_list {
+    display: grid;
+    gap: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    width: 100%;
+}
+
+
+#task_list > li {
+    display: flex;
+    padding-left: .2rem;
+    border: 1px solid black;
+    list-style-type: none;
+    height: 1.7rem;
+    width: 100%;
+    border-radius: .5rem;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1rem;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 33%;
+    height: 100%;
+    background: white;
+    border-left: 1px solid black;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+}
+
+body.modal_open #task_list {
+    width: 65%;
+    overflow: hidden;
+}

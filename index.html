@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Login Screen -->
+  <div id="login_screen">
+    <h2>Sign In</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button id="login_btn">Login</button>
+    <button id="register_btn">Register</button>
+    <button id="forgot_btn">Forgot Password?</button>
+    <p id="auth_error"></p>
+  </div>
+
+  <!-- App Screen -->
+  <div id="app_screen" style="display:none;">
+
+    <div class="header">
+      <span>
+        <input type="text" id="search" placeholder="Search Tasks">
+      </span>
+
+      <span>
+        <input type="text" id="task" placeholder="New task...">
+        <button id="add_btn">Add Item</button>  <!-- removed onclick -->
+      </span>
+
+      <span id="total_completed">Total Completed: </span>
+      <button id="logout_btn">Logout</button>
+    </div>
+
+    <div id="modal" style="display: none;">
+      <div id="modal_content">
+        <h2 id="modal_title"></h2>
+        <h2 id="modal_due_date"></h2>
+        <p id="modal_description"></p>
+        <button id="modal_close">Close</button>  <!-- removed onclick -->
+      </div>
+    </div>
+
+    <ul id="task_list"></ul>
+
+  </div>
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="auth.js"></script>
+  <script type="module" src="task.js"></script>
+  <script type="module" src="tasklist.js"></script>
+  <script type="module" src="run.js"></script>
+
+</body>
+
+</html>
