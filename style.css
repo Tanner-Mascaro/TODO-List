@@ -1,5 +1,9 @@
 
 
+.hidden {
+    display: none !important;
+}
+
 .header {
     display: flex;
     justify-content: center;

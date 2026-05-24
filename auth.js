@@ -31,8 +31,8 @@ register_btn.addEventListener("click", async () => {
 
 logout_btn.addEventListener("click", () => {
     auth.signOut();
-    document.getElementById("login_screen").style.display = "block";
-    document.getElementById("app_screen").style.display = "none";
+    document.getElementById("login_screen").classList.remove("hidden");
+    document.getElementById("app_screen").classList.add("hidden");
 });
 
 forgot_btn.addEventListener("click", async () => {
@@ -50,9 +50,8 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-
 function showApp() {
-    document.getElementById("login_screen").style.display = "none";
-    document.getElementById("app_screen").style.display = "block";
+    document.getElementById("login_screen").classList.add("hidden");
+    document.getElementById("app_screen").classList.remove("hidden");
     taskList.loadTasks();
 }
