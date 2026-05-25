@@ -13,7 +13,7 @@ export class TaskList {
         try {
             const uid = auth.currentUser.uid;
             const querySnapshot = await getDocs(collection(db, "users", uid, "tasks"));
-            
+
             this.tasks = [];
             querySnapshot.forEach(doc => {
                 const data = doc.data();
@@ -65,23 +65,22 @@ export class TaskList {
                         await deleteDoc(doc(db, "users", uid, "tasks", deletedTask.id));
                         this.tasks = this.tasks.filter(t => t !== deletedTask);
                         this.renderTasks(this.tasks);
-                    }
+                    },
+                    (task) => this.openViewModal(task)
                 ));
             });
         });
     }
 
-    async addItem() {
-        const input = document.getElementById("task");
-
-        if (input.value === "") return;
+    async addItem(name, description, dueDate) {
+        if (name === "") return;
 
         const uid = auth.currentUser.uid;
         const taskData = {
-            name: input.value,
+            name: name,
             completed: false,
-            description: "Empty",
-            dueDate: ""
+            description: description,
+            dueDate: dueDate
         };
 
         const docRef = await addDoc(collection(db, "users", uid, "tasks"), taskData);
@@ -92,7 +91,8 @@ export class TaskList {
         this.tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
         this.renderTasks(this.tasks);
 
-        input.value = "";
+        document.getElementById("modal").style.display = "none";
+        document.body.classList.remove("modal_open");
     }
 
     updateCounter() {
@@ -113,5 +113,71 @@ export class TaskList {
         }
 
         this.renderTasks(found);
+    }
+
+    openCreateModal() {
+        const modal = document.getElementById("modal");
+        const modal_content = document.getElementById("modal_content");
+
+        modal_content.innerHTML = "";
+
+        const name_input = document.createElement("input");
+        name_input.placeholder = "Task name...";
+
+        const text_input = document.createElement("textarea");
+        text_input.placeholder = "Task description...";
+
+        const date = document.createElement("input");
+        date.type = "date";
+
+        const save_btn = document.createElement("button");
+        save_btn.textContent = "Save";
+
+        modal_content.appendChild(name_input);
+        modal_content.appendChild(text_input);
+        modal_content.appendChild(date);
+        modal_content.appendChild(save_btn);
+
+        modal.style.display = "block";
+        document.body.classList.add("modal_open");
+
+        save_btn.addEventListener("click", () => {
+            this.addItem(name_input.value, text_input.value, date.value);
+        });
+    }
+
+    openViewModal(task) {
+        const modal = document.getElementById("modal");
+        const modal_content = document.getElementById("modal_content");
+
+        modal_content.innerHTML = "";
+
+        const title = document.createElement("h2");
+        title.textContent = task.name;
+
+        const description = document.createElement("p");
+        description.textContent = task.description;
+
+        const dueDate = document.createElement("p");
+        dueDate.textContent = new Date(task.dueDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        const close_btn = document.createElement("button");
+        close_btn.textContent = "Close";
+        close_btn.addEventListener("click", () => {
+            modal.style.display = "none";
+            document.body.classList.remove("modal_open");
+        });
+
+        modal_content.appendChild(title);
+        modal_content.appendChild(description);
+        modal_content.appendChild(dueDate);
+        modal_content.appendChild(close_btn);
+
+        modal.style.display = "block";
+        document.body.classList.add("modal_open");
     }
 }

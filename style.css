@@ -1,4 +1,20 @@
 
+:root {
+    --color-primary: #378ADD;
+    --color-danger: #E24B4A;
+    --color-bg: #f5f5f5;
+    --color-surface: #ffffff;
+    --color-border: #e0e0e0;
+    --color-text: #333333;
+    --color-text-muted: #888888;
+    --color-text-hint: #aaaaaa;
+    --color-surface-secondary: #f0f0f0;
+    --color-primary-hover: #185FA5;
+}
+
+.body {
+    background-color: var(--color-background-secondary);
+}
 
 .hidden {
     display: none !important;
@@ -6,8 +22,35 @@
 
 .header {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    height: 3rem;
     gap: 10px;
+}
+
+.header #search {
+    background-color: var(--color-surface-secondary);
+    border-radius: .6rem;
+    border: 1px var(--color-border) solid;
+    padding: 6px 12px;
+    color: var(--color-text);
+}
+
+.header #add_btn {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-radius: .6rem;
+    border: none;
+    padding: 6px 12px;
+}
+
+.header #logout_btn {
+    background-color: var(--color-surface-secondary);
+    border-radius: .6rem;
+    border: 1px var(--color-border) solid;
+    padding: 6px 12px;
+    color: var(--color-text);
 }
 
 * {
@@ -74,7 +117,7 @@ body.modal_open #task_list {
     flex-direction: column;
     align-items: left;
     padding: 2rem;
-    border: 1px solid black;
+    border: 1px solid #e0e0e0;
     border-radius: .5rem;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
 }
@@ -84,6 +127,8 @@ body.modal_open #task_list {
     margin-top: .5rem;
     margin-bottom: .5rem;
     width: 20rem;
+    border: 1px solid #e0e0e0;
+    color: #333333;
 }
 
 #login_box > #login_btn, #register_btn {
@@ -93,15 +138,27 @@ body.modal_open #task_list {
     border-radius: .4rem;
 }
 
+#login_box > #register_btn {
+    border: none;
+    background-color: black;
+    color: white;
+}
+
 #login_box > #login_btn {
-    background-color: rgb(19, 187, 233);
+    background-color: #4A90D9;
     border: none;
     color: white;
 }
 
 #login_box > #login_btn:hover {
-    background-color: rgb(138, 226, 250);
+    background-color: #357ABD;
     border: none;
+    color: white;
+}
+
+#login_box > #register_btn:hover {
+    border: none;
+    background-color: rgb(71, 70, 70);
     color: white;
 }
 

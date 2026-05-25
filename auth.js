@@ -55,3 +55,9 @@ function showApp() {
     document.getElementById("app_screen").classList.remove("hidden");
     taskList.loadTasks();
 }
+
+password.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        login_btn.click();
+    }
+});

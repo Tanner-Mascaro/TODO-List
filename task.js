@@ -10,7 +10,7 @@ export class Task {
         this.completed = !this.completed;
     }
 
-    render(onUpdate, onDelete) {
+    render(onUpdate, onDelete, onView) {
         const new_item = document.createElement("li");
         const new_item_check = document.createElement("input");
         const new_item_text = document.createElement("span");
@@ -32,11 +32,7 @@ export class Task {
         });
 
         new_item.addEventListener("click", () => {
-            document.getElementById("modal_title").textContent = this.name;
-            document.getElementById("modal_description").textContent = this.description;
-            document.getElementById("modal").style.display = "block";
-            document.getElementById("modal_due_date").textContent = this.dueDate;
-            document.body.classList.add("modal_open");
+            onView(this);
         });
 
         delete_button.addEventListener("click", (event) => {
