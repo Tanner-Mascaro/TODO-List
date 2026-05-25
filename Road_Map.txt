@@ -1,0 +1,15 @@
+
+Features to add:
+- Add ability to repeat tasks
+- Add ability to delete multiple tasks
+- Add time when you should complete them not just date
+- Notification text/on phone
+- Display user name on top
+- Drag and reorder tasks
+
+
+
+
+Bugs: 
+- Make sure tracking is mapped when you log out
+- Close button if I don't want to add a task
